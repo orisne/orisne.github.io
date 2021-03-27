@@ -89,11 +89,11 @@ function reset() {
     document.getElementById("attributes").innerHTML = "";
     ig_list = [];
     count = 0;
-    document.getElementById("classname_value").value = '';
-    document.getElementById("x1").value = ''; document.getElementById("y1").value = ''; document.getElementById("z1").value = '';
-    document.getElementById("x2").value = ''; document.getElementById("y2").value = ''; document.getElementById("z2").value = '';
-    document.getElementById("ox").value = ''; document.getElementById("oy").value = ''; document.getElementById("oz").value = '';
-    document.getElementById("hollow").checked = true;
+    // document.getElementById("classname_value").value = '';
+    // document.getElementById("x1").value = ''; document.getElementById("y1").value = ''; document.getElementById("z1").value = '';
+    // document.getElementById("x2").value = ''; document.getElementById("y2").value = ''; document.getElementById("z2").value = '';
+    // document.getElementById("ox").value = ''; document.getElementById("oy").value = ''; document.getElementById("oz").value = '';
+    // document.getElementById("hollow").checked = true;
     // document.getElementById("textarea").value = ''
 }
 
