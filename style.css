@@ -1,0 +1,23 @@
+.main-frame {
+    margin: 0 auto;
+    width: 600px;
+    text-align: center;
+}
+body {
+    background-color: transparent;
+}
+
+.origin {
+    margin: 0 auto;
+    width: 400px;
+}
+
+.title {
+    position: relative;
+    font-size: x-large;
+    font-weight: 600;
+}
+
+.output {
+    position: relative;
+}

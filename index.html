@@ -1,12 +1,144 @@
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project O</title>
-</head>
-<body>
+
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- JQuery google's CDN link-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <!-- Local JS -->
+    <script src="tools.js"></script>
     <script src="main.js"></script>
+
+    <!-- Local CSS -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <title>Entities Generator</title>
+  </head>
+
+
+
+  <body>
+
+    <div id="main-app" class="main-frame">
+      <br>
     
-</body>
+    <!--Entity Creation-->
+    <div id="Entities" class="ent">
+
+      <div class="title">
+        <div class="alert alert-light" role="alert">
+          <div class="title">Entity</div>
+        </div>
+      </div>
+
+        <div class="input-group mb-3">
+            <input id="classname" disabled="true" type="text" spellcheck="false" class="form-control" placeholder="classname" aria-label="classname">
+            <input id="classname_value" type="text" spellcheck="false" class="form-control" placeholder="value" aria-label="value">
+            <button type="button" class="btn btn-primary btn-sm" onclick=add_attribute_form()><b>+</b></button>
+          </div>
+
+          <div id="attributes">
+            
+
+          </div>
+
+          <!-- Reset attributes -->
+
+    </div>
+
+
+    <!-- Origins setup -->
+    <div id="Origin" class="origin">
+
+      <div class="title">
+        <div class="alert alert-light" role="alert">
+          <div class="title">Fill</div>
+        </div>
+      </div>
+
+      <div class="input-group mb-3">
+        <span class="input-group-text">From&nbsp;</span>
+        <input id="x1" spellcheck="false" class="form-control" placeholder="x" aria-label="x">
+        <input id="y1" spellcheck="false" class="form-control" placeholder="y" aria-label="y">
+        <input id="z1" spellcheck="false" class="form-control" placeholder="z" aria-label="z">
+      </div>
+
+      <div class="input-group mb-3">
+        <span class="input-group-text">To &ensp;&ensp;&nbsp;</span>
+        <input id="x2" spellcheck="false" class="form-control" placeholder="x" aria-label="x">
+        <input id="y2" spellcheck="false" class="form-control" placeholder="y" aria-label="y">
+        <input id="z2" spellcheck="false" class="form-control" placeholder="z" aria-label="z">
+      </div>
+
+      <div class="input-group mb-3">
+        <span class="input-group-text">Offset</span>
+        <input id="ox" spellcheck="false" class="form-control" placeholder="x" aria-label="x">
+        <input id="oy" spellcheck="false" class="form-control" placeholder="y" aria-label="y">
+        <input id="oz" spellcheck="false" class="form-control" placeholder="z" aria-label="z">
+      </div>
+
+      <div class="form-check">
+        <label class="form-check-label" for="hollow">
+          Hollow <input class="form-check-input" type="checkbox" value="" id="hollow" checked>
+        </label>
+      </div>
+
+      <div class="form-check form-switch">
+        <label class="form-check-label" for="duplicate">
+          Duplicate<input class="form-check-input" type="checkbox" id="duplicate" onclick="add_duplicate_form()">
+        </label>
+      </div>
+
+      <div id="duplicate_form" style="display: none;">
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">Offset</span>
+          <input id="dox" type="text" spellcheck="false" class="form-control" placeholder="x">
+          <input id="doy" type="text" spellcheck="false" class="form-control" placeholder="y">
+          <input id="doz" type="text" spellcheck="false" class="form-control" placeholder="z">
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">Times</span>
+          <input id="times" type="text" class="form-control" placeholder="Number of times to duplicate">
+        </div>
+      </div>
+
+      <br>
+      
+    </div>
+
+    <button type="button" class="btn btn-success" onclick=generate()>Generate</button>
+    <button type="button" class="btn btn-danger" onclick=reset()>Reset</button>
+
+    <br><br><br><br>
+
+    <div id="output" class="output">
+
+      <div class="form-group">
+        <label for="textarea">
+          <button type="button" class="btn btn-info btn-sm" onclick="copy()">Copy</button>
+          <button type="button" class="btn btn-light btn-sm" onclick="document.getElementById('textarea').value=''">Clear</button>
+        </label> 
+        <br><br>
+        
+        <textarea class="form-control" id="textarea" rows="6" readonly></textarea>
+      </div>
+    </form>
+    <br><br><br><br>
+
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+
+  </div>
+
+  </body>
 </html>
