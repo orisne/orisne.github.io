@@ -26,41 +26,66 @@
 
   <body>
 
+
+
+
+
+
+
+
+
+
     <div id="main-app" class="main-frame">
+
       <br>
+
+
+
+
+
     
     <!--Entity Creation-->
     <div id="Entities" class="ent">
 
       <div class="title">
-        <div class="alert alert-light" role="alert">
-          <div class="title">Entity</div>
-        </div>
+        Entity
       </div>
+
 
         <div class="input-group mb-3">
             <input id="classname" disabled="true" type="text" spellcheck="false" class="form-control" placeholder="classname" aria-label="classname">
             <input id="classname_value" type="text" spellcheck="false" class="form-control" placeholder="value" aria-label="value">
-            <button type="button" class="btn btn-primary btn-sm" onclick=add_attribute_form()><b>+</b></button>
+            <button type="button" class="btn btn-primary btn-sm" onclick=add_attribute_form() 
+            data-bs-toggle="tooltip" data-bs-placement="top" data-bs-animation='false' trigger="hover" title="Add Attribute">+</button>
           </div>
 
           <div id="attributes">
             
 
           </div>
-
           <!-- Reset attributes -->
-
     </div>
+
+    <button id="reset_btn" type="button" class="btn btn-danger" style="display: none; margin: 0 auto;" onclick=reset() 
+    data-bs-toggle="tooltip" data-bs-placement="top" trigger="hover focus" data-bs-animation='false' title="Remove All Attributes">Reset</button>
+
+    <br>
+
+
 
 
     <!-- Origins setup -->
     <div id="Origin" class="origin">
 
       <div class="title">
-        <div class="alert alert-light" role="alert">
-          <div class="title">Fill</div>
-        </div>
+        Fill
+      </div>
+
+      <div class="form-check">
+        <label class="form-check-label" for="hollow">
+          Hollow <input class="form-check-input" type="checkbox" value="" id="hollow" checked
+          data-bs-toggle="tooltip" data-bs-placement="top" trigger="hover focus" data-bs-animation='false' title="Generate only the outline of the rectangle">
+        </label>
       </div>
 
       <div class="input-group mb-3">
@@ -84,15 +109,35 @@
         <input id="oz" spellcheck="false" class="form-control" placeholder="z" aria-label="z">
       </div>
 
-      <div class="form-check">
-        <label class="form-check-label" for="hollow">
-          Hollow <input class="form-check-input" type="checkbox" value="" id="hollow" checked>
+      <div class="form-check form-switch">
+        <label class="form-check-label" for="angle">
+          Angle<input class="form-check-input" type="checkbox" id="angle" onclick="add_angles_form()" 
+          data-bs-toggle="tooltip" data-bs-placement="top" trigger="hover focus" data-bs-animation='false' title="Add angle rotation" disabled>
         </label>
       </div>
 
+      <div id="angles" style="display: none;">
+
+        <div class="input-group mb-3">
+          <span class="input-group-text">Angles</span>
+          <input id="start_angle_x" spellcheck="false" class="form-control" placeholder="x" aria-label="x">
+          <input id="start_angle_y" spellcheck="false" class="form-control" placeholder="y" aria-label="y">
+          <input id="start_angle_z" spellcheck="false" class="form-control" placeholder="z" aria-label="z">
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text">Rotate</span>
+          <input id="rotate_angle_x" spellcheck="false" class="form-control" placeholder="x" aria-label="x">
+          <input id="rotate_angle_y" spellcheck="false" class="form-control" placeholder="y" aria-label="y">
+          <input id="rotate_angle_z" spellcheck="false" class="form-control" placeholder="z" aria-label="z">
+        </div>
+
+    </div>
+
       <div class="form-check form-switch">
         <label class="form-check-label" for="duplicate">
-          Duplicate<input class="form-check-input" type="checkbox" id="duplicate" onclick="add_duplicate_form()">
+          Duplicate<input class="form-check-input" type="checkbox" id="duplicate" onclick="add_duplicate_form()"
+          data-bs-toggle="tooltip" data-bs-placement="top" trigger="hover focus" data-bs-animation='false' title="Duplicate the rectangle of entities">
         </label>
       </div>
 
@@ -115,7 +160,6 @@
     </div>
 
     <button type="button" class="btn btn-success" onclick=generate()>Generate</button>
-    <button type="button" class="btn btn-danger" onclick=reset()>Reset</button>
 
     <br><br><br><br>
 
@@ -128,15 +172,23 @@
         </label> 
         <br><br>
         
-        <textarea class="form-control" id="textarea" rows="6" readonly></textarea>
+        <textarea class="form-control" id="textarea" rows="6" style="resize: vertical;" readonly></textarea>
       </div>
     </form>
-    <br><br><br><br>
+    <br>
 
     </div>
 
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+
+    <!-- Initialize Tooltips -->
+    <script>
+      var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+      var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+      })
+    </script>
 
   </div>
 

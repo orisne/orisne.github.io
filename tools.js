@@ -102,33 +102,46 @@ function fill(p1, p2, offset, hollow=false) {
     n_p1 = new Point(Math.min(p1.x, p2.x), Math.min(p1.y, p2.y), Math.min(p1.z, p2.z));
     n_p2 = new Point(Math.max(p1.x, p2.x), Math.max(p1.y, p2.y), Math.max(p1.z, p2.z));
     let points = [];
+    let t_arr = [];
+    let border, b_x, b_y, b_z; // border end-points
+    let x_d, y_d, z_d; // distance on 1d axis
+    x_d = n_p2.x-n_p1.x; y_d =n_p2.y-n_p1.y; z_d = n_p2.z-n_p1.z;
 
-    n_offset.x == 0 ? (n_p2.x-n_p1.x == 0 ? (n_offset.x = 1): (n_offset.x = n_p2.x-n_p1.x)) : (n_offset.x = n_offset.x);
-    n_offset.y == 0 ? (n_p2.y-n_p1.y == 0 ? (n_offset.y = 1): (n_offset.y = n_p2.y-n_p1.y)) : (n_offset.y = n_offset.y);
-    n_offset.z == 0 ? (n_p2.z-n_p1.z == 0 ? (n_offset.z = 1): (n_offset.z = n_p2.z-n_p1.z)) : (n_offset.z = n_offset.z);
+    n_offset.x == 0 ? (x_d == 0 ? (n_offset.x = 1): (n_offset.x = x_d)) : (n_offset.x = n_offset.x);
+    n_offset.y == 0 ? (y_d == 0 ? (n_offset.y = 1): (n_offset.y = y_d)) : (n_offset.y = n_offset.y);
+    n_offset.z == 0 ? (z_d == 0 ? (n_offset.z = 1): (n_offset.z = z_d)) : (n_offset.z = n_offset.z);
 
-    n_p2.x-n_p1.x == 0 ? (n_p2.x += 1) : n_p2.x = n_p2.x;
-    n_p2.y-n_p1.y == 0 ? (n_p2.y += 1) : n_p2.y = n_p2.y;
-    n_p2.z-n_p1.z == 0 ? (n_p2.z += 1) : n_p2.z = n_p2.z;
-
-    let border = [n_p1.x, n_p1.y, n_p1.z, Math.floor(n_p1.x+(n_p2.x-n_p1.x)/n_offset.x), Math.floor(n_p1.y+(n_p2.y-n_p1.y)/n_offset.y), Math.floor(n_p1.z+(n_p2.z-n_p1.z)/n_offset.z)];
+    x_d == 0 ? (n_p2.x += 1) : n_p2.x = n_p2.x;
+    y_d == 0 ? (n_p2.y += 1) : n_p2.y = n_p2.y;
+    z_d == 0 ? (n_p2.z += 1) : n_p2.z = n_p2.z;
 
     for (let i=n_p1.x; i<n_p2.x; i+=n_offset.x) {
         for (let j=n_p1.y; j<n_p2.y; j+=n_offset.y) {
             for (let k=n_p1.z; k<n_p2.z; k+=n_offset.z) {
-                if (hollow) {
-                    if (border.includes(i) || border.includes(j) || border.includes(k)) {
-                        points.push(new Point(i,j,k));
-                    }
-                }
-                else {
-                    points.push(new Point(i,j,k));
-                }
+                points.push(new Point(i,j,k));
             }
         }
     }
     
-        return points;
+    b_x = n_p1.x + Math.floor(x_d/n_offset.x) * n_offset.x;
+    b_y = n_p1.y + Math.floor(y_d/n_offset.y) * n_offset.y;
+    b_z = n_p1.z + Math.floor(z_d/n_offset.z) * n_offset.z;
+
+    border = [n_p1.x, n_p1.y, n_p1.z, b_x, b_y, b_z];
+
+    if (hollow) {
+        for (let i=0; i<points.length; i++) {
+            if (points[i].x == border[0] || points[i].y == border[1] || points[i].z == border[2]
+                || points[i].x == border[3] || points[i].y == border[4] || points[i].z == border[5]) {
+                t_arr.push(points[i]);
+            }
+        }
+    }
+    
+    // console.log(t_arr.length);
+    points = t_arr;
+
+    return points;
 }
 
 // Generates the code for the .ent file

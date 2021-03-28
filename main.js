@@ -1,8 +1,6 @@
 var count = 0;
 var ig_list = [];
 
-
-
 // Adding the inputs upon click
 function add_attribute_form() {
 
@@ -50,8 +48,13 @@ function add_attribute_form() {
     // remove_inputs button setup
     remove_inputs.setAttribute("id", "line" + count.toString());
     remove_inputs.setAttribute("type", "button");
-    remove_inputs.setAttribute("class", "btn btn-danger");
+    remove_inputs.setAttribute("class", "btn btn-warning");
     remove_inputs.setAttribute("onclick", "remove_input_group(" + ("ig" + count.toString()) + ")");
+    // remove_inputs.setAttribute("data-bs-toggle", "tooltip");
+    // remove_inputs.setAttribute("data-bs-placement", "top");
+    // remove_inputs.setAttribute("trigger", "hover focus");
+    // remove_inputs.setAttribute("data-bs-animation", "false");
+    // remove_inputs.setAttribute("title", "Remove");
 
 
     document.getElementById("attributes").appendChild(input_group);
@@ -63,6 +66,8 @@ function add_attribute_form() {
     ])
     count++;
 
+    document.getElementById("reset_btn").style.display = 'block';
+
 }
 
 function remove_input_group(e) {
@@ -72,11 +77,26 @@ function remove_input_group(e) {
     e.remove();
     count += -1
     // console.log(ig_list)
+
+    if (ig_list.length<1) {
+        document.getElementById("reset_btn").style.display = 'none';
+    }
 }
 
 function add_duplicate_form() {
     var checkBox = document.getElementById("duplicate");
     var content = document.getElementById("duplicate_form");
+    if (checkBox.checked == true) {
+        content.style.display = "block";
+    }
+    else {
+        content.style.display = "none";
+    }
+}
+
+function add_angles_form() {
+    var checkBox = document.getElementById("angle");
+    var content = document.getElementById("angles");
     if (checkBox.checked == true) {
         content.style.display = "block";
     }
@@ -95,6 +115,7 @@ function reset() {
     // document.getElementById("ox").value = ''; document.getElementById("oy").value = ''; document.getElementById("oz").value = '';
     // document.getElementById("hollow").checked = true;
     // document.getElementById("textarea").value = ''
+    document.getElementById("reset_btn").style.display = 'none';
 }
 
 function copy() {
