@@ -12,6 +12,10 @@ body {
     display: none;
 }
 
+.version {
+    float: left;
+}
+
 .main-frame {
     margin: 0 auto;
     width: 600px;
@@ -20,6 +24,7 @@ body {
     width: fit-content;
     max-width: 600px;
     min-width: 200px;
+    min-height: 200px;
 }
 
 .title {
