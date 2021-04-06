@@ -19,6 +19,8 @@
     <!-- Local CSS -->
     <link rel="stylesheet" type="text/css" href="style.css">
 
+    <script src="https://kit.fontawesome.com/ed3f9862f9.js" crossorigin="anonymous"></script>
+
     <title>Entities Generator</title>
   </head>
 
@@ -26,9 +28,10 @@
 
   <body>
 
-<div id="version" class="version">
-  Version 0.12b
-</div>
+    <div id="version" class="version">
+      Version 0.13
+    </div>
+    <br>
 
 
 
@@ -58,7 +61,9 @@
             <input id="classname" disabled="true" type="text" spellcheck="false" class="form-control" placeholder="classname" aria-label="classname">
             <input id="classname_value" type="text" spellcheck="false" class="form-control" placeholder="value" aria-label="value">
             <button type="button" class="btn btn-primary btn-sm" onclick=add_attribute_form() 
-            data-bs-toggle="tooltip" data-bs-placement="top" data-bs-animation='false' trigger="hover" title="Add Attribute">+</button>
+            data-bs-toggle="tooltip" data-bs-placement="top" data-bs-animation='false' trigger="hover" title="Add Attribute">
+            <i class="fas fa-plus-square"></i>
+          </button>
           </div>
 
           <div id="attributes">
@@ -115,18 +120,18 @@
       <div class="form-check form-switch">
         <label class="form-check-label" for="angle">
           Angle<input class="form-check-input" type="checkbox" id="angle" onclick="add_angles_form()" 
-          data-bs-toggle="tooltip" data-bs-placement="top" trigger="hover focus" data-bs-animation='false' title="Add angle rotation" disabled>
+          data-bs-toggle="tooltip" data-bs-placement="top" trigger="hover focus" data-bs-animation='false' title="Add angle rotation">
         </label>
       </div>
 
       <div id="angles" style="display: none;">
 
-        <div class="input-group mb-3">
+        <!-- <div class="input-group mb-3">
           <span class="input-group-text">Angles</span>
           <input id="start_angle_x" spellcheck="false" class="form-control" placeholder="x" aria-label="x">
           <input id="start_angle_y" spellcheck="false" class="form-control" placeholder="y" aria-label="y">
           <input id="start_angle_z" spellcheck="false" class="form-control" placeholder="z" aria-label="z">
-        </div>
+        </div> -->
 
         <div class="input-group mb-3">
           <span class="input-group-text">Rotate</span>

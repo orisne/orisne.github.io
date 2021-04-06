@@ -136,12 +136,13 @@ function fill(p1, p2, offset, hollow=false) {
                 t_arr.push(points[i]);
             }
         }
+        return t_arr;
+    }
+    else {
+        return points;
     }
     
     // console.log(t_arr.length);
-    points = t_arr;
-
-    return points;
 }
 
 // Generates the code for the .ent file
@@ -151,31 +152,35 @@ function generate() {
     let e = new Entity(document.getElementById("classname_value").value.toString());
     let array = [];
     let content = '';
+    let contain_angles = false;
 
-    let p1 = new Point(
+    let p1 = new Point( // First Corner
         parseInt(document.getElementById("x1").value == "" ? 0 : document.getElementById("x1").value),
         parseInt(document.getElementById("y1").value == "" ? 0 : document.getElementById("y1").value),
         parseInt(document.getElementById("z1").value == "" ? 0 : document.getElementById("z1").value));
 
-    let p2 = new Point(
+    let p2 = new Point( // Second corner
         parseInt(document.getElementById("x2").value == "" ? 0 : document.getElementById("x2").value),
         parseInt(document.getElementById("y2").value == "" ? 0 : document.getElementById("y2").value),
         parseInt(document.getElementById("z2").value == "" ? 0 : document.getElementById("z2").value));
 
-    let offset = new Point(
+    let offset = new Point( // Entity offsets
         parseInt(document.getElementById("ox").value == "" ? 0 : document.getElementById("ox").value),
         parseInt(document.getElementById("oy").value == "" ? 0 : document.getElementById("oy").value),
         parseInt(document.getElementById("oz").value == "" ? 0 : document.getElementById("oz").value));
 
     let hollow = document.getElementById("hollow").checked
 
-    let d_offset = new Point(
+    let d_offset = new Point( // Duplicate offsets
         parseInt(document.getElementById("dox").value == "" ? 0 : document.getElementById("dox").value),
         parseInt(document.getElementById("doy").value == "" ? 0 : document.getElementById("doy").value),
         parseInt(document.getElementById("doz").value == "" ? 0 : document.getElementById("doz").value));
 
+    let a_offset = new Point( // Angles offsets
+        parseInt(document.getElementById("rotate_angle_x").value == "" ? 0 : document.getElementById("rotate_angle_x").value),
+        parseInt(document.getElementById("rotate_angle_y").value == "" ? 0 : document.getElementById("rotate_angle_y").value),
+        parseInt(document.getElementById("rotate_angle_z").value == "" ? 0 : document.getElementById("rotate_angle_z").value));
 
-    
     let times = document.getElementById("times").value;
 
     // Set entitiy's attributes
@@ -191,6 +196,27 @@ function generate() {
             let t = new Entity(e.classname, e.attributes);
             t.add([["origin", `${pts[i].x.toString()} ${pts[i].y.toString()} ${pts[i].z.toString()}`]]);
             array.push(t);
+        }
+
+        if (document.getElementById("angle").checked == true) {
+            for (var i=0; i<array.length; i++) {
+                for (var j=0; j<array[i].attributes.length; j++) {
+                    if (array[i].attributes[j][0].toLowerCase() == 'angles') {
+                        contain_angles = true;
+                    }
+                }
+            }
+            if (contain_angles) {
+                let ax = a_offset.x;
+                let ay = a_offset.y;
+                let az = a_offset.z;
+                for (var i=0; i<array.length; i++) {
+                    array[i].rotate(ax, ay, az);
+                    ax += a_offset.x;
+                    ay += a_offset.y;
+                    az += a_offset.z;
+                }
+            }
         }
 
         // Checking if duplicate is checked, if so moves the origins, fills again and pushes into the entites array.

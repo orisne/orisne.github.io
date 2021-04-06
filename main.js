@@ -11,7 +11,7 @@ function add_attribute_form() {
     var span = document.createElement("span");
     var value = document.createElement("input");
     var remove_inputs = document.createElement("button");
-    var nl = document.createElement("br");
+    var i_b = document.createElement("i");
 
 
     // appending elements into the input group format div
@@ -20,6 +20,7 @@ function add_attribute_form() {
     input_group.appendChild(value);
     input_group.appendChild(remove_inputs);
     // input_group.appendChild(nl);
+    
 
 
     // div setup
@@ -56,10 +57,13 @@ function add_attribute_form() {
     // remove_inputs.setAttribute("data-bs-animation", "false");
     // remove_inputs.setAttribute("title", "Remove");
 
+    i_b.setAttribute("class", "fas fa-trash");
+    remove_inputs.appendChild(i_b);
+
 
     document.getElementById("attributes").appendChild(input_group);
 
-    document.getElementById("line".concat(count)).innerHTML = "-";
+    // document.getElementById("line".concat(count)).innerHTML = "";
 
     ig_list.push([
         "ig" + count.toString()
